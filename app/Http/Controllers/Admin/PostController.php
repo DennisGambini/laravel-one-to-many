@@ -92,8 +92,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::all();
         $post = Post::findOrFail($id);
-        return view('admin.posts.edit', compact('post'));
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -113,6 +114,7 @@ class PostController extends Controller
         $updatedPost->title = $data['title'];
         $updatedPost->content = $data['content'];
         $updatedPost->published = isset($data['published']);
+        $updatedPost->category_id = $data['category_id'];
 
         if($updatedPost->title != $data['title']){
 

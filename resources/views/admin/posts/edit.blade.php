@@ -29,6 +29,16 @@
               <label class="form-check-label" for="published">Publish now?</label>
             </div>
 
+            <div class="mb-3">
+                <label for="category_id" class="form-label">Category : </label>
+                <select name="category_id" id="category_id">
+                    <option value="">Select Category</option>
+                    @foreach ($categories as $category)
+                    <option value="{{$category->id}}" {{$category->id == $post->category_id ? 'selected' : ''}}>{{$category->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
 
           </form>
