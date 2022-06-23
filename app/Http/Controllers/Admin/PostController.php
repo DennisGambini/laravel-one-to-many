@@ -4,10 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Post;
 
 class PostController extends Controller
 {
+    protected $validationRules = [
+        "title" => "required|string|max:60",
+        "content" => "required|max:1000",
+        "published" => "sometimes|accepted"
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +33,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -37,7 +44,28 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->validationRules);
+
+        $data = $request->all();
+
+        $newPost = new Post();
+
+        $newPost->title = $data['title'];
+        $newPost->content = $data['content'];
+        $newPost->published = isset($data['published']);
+        
+        // creazione slug
+        $slug = Str::of($data['title'])->slug("-");
+        $count = 1;
+        while(Post::where('slug', $slug)->first()){
+            $slug = Str::of($data['title'])->slug("-")."-{$count}";
+            $count++;
+        }
+        $newPost->slug = $slug;
+
+        $newPost->save();
+
+        return redirect()->route('admin.posts.show', $newPost->id);
     }
 
     /**
@@ -83,6 +111,24 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return redirect()->route('admin.posts.index');
+    }
+
+    // funzione per creare slug
+    private function getSlug($title){
+
+        $slug = Str::of($title)->slug('-');
+        $count = 1;
+
+        while(Post::where('slug', $slug)->first()){
+            $slug = Str::of($title)->slug('-').'-{$count}';
+            $count++;
+        }
+
+        return $slug;
+
     }
 }
