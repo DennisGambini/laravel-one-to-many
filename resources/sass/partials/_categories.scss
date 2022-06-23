@@ -1,0 +1,28 @@
+.all-categories{
+    .container{
+        .row{
+            row-gap: 50px;
+            .col-3{
+                align-self: stretch;
+                .cat-card{
+                    padding: 10px;
+                    border: 1px solid black;
+                    height: 100%;
+                    .cat-span{
+                        color: red;
+                        font-size: 1.1em;
+                    }
+                    .cat-btns{
+                        padding: 15px 0;
+                        display: flex;
+                        gap: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.red{
+    color: red;
+}

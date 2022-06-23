@@ -53,6 +53,31 @@ footer .links {
   gap: 20px;
 }
 
+.all-categories .container .row {
+  row-gap: 50px;
+}
+.all-categories .container .row .col-3 {
+  align-self: stretch;
+}
+.all-categories .container .row .col-3 .cat-card {
+  padding: 10px;
+  border: 1px solid black;
+  height: 100%;
+}
+.all-categories .container .row .col-3 .cat-card .cat-span {
+  color: red;
+  font-size: 1.1em;
+}
+.all-categories .container .row .col-3 .cat-card .cat-btns {
+  padding: 15px 0;
+  display: flex;
+  gap: 20px;
+}
+
+.red {
+  color: red;
+}
+
 /*!
  * Bootstrap v4.6.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
