@@ -25,6 +25,12 @@
                         <span class="post-span">Titolo : </span>
                         <a href="{{route('admin.posts.show', $post->id)}}">{{$post->title}}</a>
                     </div>
+                    <div class="post-categories">
+                        <span class="post-span">Categories : </span>
+                        {{
+                        $post->category_id != null ? App\Category::find($post->category_id)->name : 'none'
+                        }}
+                    </div>
                     <div class="post-content">
                         <span class="post-span">Content : </span>
                         {{$post->content}}
