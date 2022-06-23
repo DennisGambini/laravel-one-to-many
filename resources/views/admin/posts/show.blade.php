@@ -13,6 +13,13 @@
             {{$post->content}}
         </div>
 
+        <div class="show-categories">
+            Categories : 
+            {{
+            $post->category_id != null ? App\Category::find($post->category_id)->name : 'none'
+            }}
+        </div>
+
         <div class="show-published">
             {{$post->published}}
         </div>
