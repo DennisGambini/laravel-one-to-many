@@ -24,7 +24,7 @@
 
 
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="published">
+              <input type="checkbox" class="form-check-input" id="published" name="published">
               <label class="form-check-label" for="published">Publish now?</label>
             </div>
 

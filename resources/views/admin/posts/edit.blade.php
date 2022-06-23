@@ -25,7 +25,7 @@
 
 
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="published" {{old($post->published) ? 'checked' : ''}}>
+              <input type="checkbox" class="form-check-input" id="published" name="published" {{$post->published == 1 ? 'checked' : ''}}>
               <label class="form-check-label" for="published">Publish now?</label>
             </div>
 
