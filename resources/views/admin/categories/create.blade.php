@@ -1,6 +1,6 @@
 @extends('layouts.categories')
 
-@section('pageTitle', $category->name)
+@section('pageTitle', 'Create New Category')
 
 @section('mainContent')
 
@@ -13,7 +13,7 @@
             @csrf
 
             <div class="mb-3">
-                <label for="name" class="form-label">Post Title</label>
+                <label for="name" class="form-label">Category Name</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="insert category name">
             </div>
 

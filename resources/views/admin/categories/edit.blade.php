@@ -15,7 +15,7 @@
 
             <div class="mb-3">
                 <label for="name" class="form-label">Post Title</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="insert new name" value="{{$category->title}}">
+                <input type="text" class="form-control" id="name" name="name" placeholder="insert new name" value="{{$category->name}}">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

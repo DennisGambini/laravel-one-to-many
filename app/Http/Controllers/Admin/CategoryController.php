@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -44,6 +45,8 @@ class CategoryController extends Controller
 
         $data = $request->all();
 
+        $newCategory = new Category();
+
         $newCategory->name = $data['name'];
         $slug = Str::of($newCategory->name)->slug("-");
         $count = 1;
@@ -78,7 +81,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -90,7 +94,26 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate($this->categoryValidation);
+
+        $data = $request->all();
+
+        $updatedCat = Category::findOrFail($id);
+
+        $updatedCat->name = $data['name'];
+
+        $slug = Str::of($updatedCat->name)->slug('-');
+        $count = 1;
+        while(Category::where('cat_slug', $slug)->first()){
+            $slug = Str::of($data['name'])->slug("-")."-{$count}";
+            $count++;
+        }
+        $updatedCat->cat_slug = $slug;
+
+        $updatedCat->update();
+
+        return redirect()->route('admin.categories.show', $updatedCat->id);
+
     }
 
     /**
@@ -101,6 +124,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cat = Category::find($id);
+        $cat->delete();
+
+        return redirect()->route('admin.categories.index');
     }
 }
