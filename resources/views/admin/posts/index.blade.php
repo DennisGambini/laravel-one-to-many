@@ -9,6 +9,12 @@
     <div class="container">
 
         <h1>All Posts</h1>
+
+        <div>
+            <button class="mb-5">
+                <a href="{{route('admin.posts.create')}}">Crea un nuovo post</a>
+            </button>
+        </div>
     
         <div class="row">
             @foreach ($posts as $post)
