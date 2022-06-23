@@ -32,6 +32,27 @@ footer .links {
   justify-content: space-around;
 }
 
+.all-posts .container .row {
+  row-gap: 50px;
+}
+.all-posts .container .row .col-3 {
+  align-self: stretch;
+}
+.all-posts .container .row .col-3 .post-card {
+  padding: 10px;
+  border: 1px solid black;
+  height: 100%;
+}
+.all-posts .container .row .col-3 .post-card .post-span {
+  color: red;
+  font-size: 1.1em;
+}
+.all-posts .container .row .col-3 .post-card .post-btns {
+  padding: 15px 0;
+  display: flex;
+  gap: 20px;
+}
+
 /*!
  * Bootstrap v4.6.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

@@ -1,0 +1,64 @@
+@extends('layouts.post_layout')
+
+@section('pageTitle', 'All Posts')
+
+@section('mainContent')
+
+<section class="all-posts">
+
+    <div class="container">
+
+        <h1>All Posts</h1>
+    
+        <div class="row">
+            @foreach ($posts as $post)
+
+            <div class="col-3">
+                <div class="post-card">
+                    <div class="post-title">
+                        <span class="post-span">Titolo : </span>
+                        <a href="{{route('admin.posts.show', $post->id)}}">{{$post->title}}</a>
+                    </div>
+                    <div class="post-content">
+                        <span class="post-span">Content : </span>
+                        {{$post->content}}
+                    </div>
+                    <div class="post-slug">
+                        <span class="post-span">Slug : </span>
+                        {{$post->slug}}
+                    </div>
+                    <div class="post-published">
+                        <span class="post-span">Published : </span>
+                        {{$post->published}}
+                    </div>
+                    <div class="post-date">
+                        <span class="post-span">Created : </span>
+                        {{$post->created_at}}
+                    </div>
+                    <div class="post-btns">
+
+                        {{-- bottone/form delete --}}
+                        <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit">Delete</button>
+                        </form>
+
+                        {{-- link edit --}}
+                        <button>
+                            <a href="{{route('admin.posts.edit', $post->id)}}">Modify</a>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+                
+            @endforeach
+        </div>
+
+    </div>
+
+</section>
+
+@endsection
